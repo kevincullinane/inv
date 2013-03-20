@@ -1,0 +1,179 @@
+ <html>
+ 	<body>
+ 		<head> 
+	 		<script src='//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
+	 		<script src='/js/jquery.easing.1.3.js'></script>
+	 		<script>
+	 			$(function() {
+	 				$('ul.nav a').bind('click',function(event)
+	 					{var $anchor = $(this);
+	 				$('html, body').stop().animate({
+	 					scrollLeft: $($anchor.attr('href')).offset().left
+	 				}, 1500,'easeInOutExpo');
+	 				$('html, body').stop().animate({
+	 					scrollLeft: $($anchor.attr('href')).offset().left
+	 				}, 1000);
+	 				event.preventDefault();
+	 				});
+	 				});
+	 		</script>
+	        <link type="text/css" rel="stylesheet" href="/stylesheets/bootstrap.css">
+    	</head>
+    	<div class = "container">
+    		<div class="heads">
+    			<h2><img src="/img/logo.png">Flipkey Inventory</h2>
+    		</div>
+    			<div class="section" id ="comps">
+    				<ul class="nav nav-pills">
+    					<li><a href="#comps">Computers</a></li>
+    					<li><a href="#prints">Printers</a></li>
+    					<li><a href="#phone">Phones</a></li>
+    					<li><a href="#net">Network</a></li>
+    					<li><a href="#moni">Monitors</a></li>
+    				</ul>
+    			</nav>
+    			<table class="table table-bordered table-hover">
+                               	<tr style='white-space: nowrap; overflow: hidden; text-overflow:ellipsis;'>
+	                               	<td>User Name:</td>
+	                               	<td>Computer Type: </td>
+	                               	<td>Hostname: </td>
+	                               	<td>Serial #:</td>
+	                               	<td>OS: </td>
+	                           		<td>Notes:</td>
+	                           	</tr>\
+	                           	{% if comps %}
+	                           		{% for item in comps %}
+		                        	<tr style='white-space: nowrap; overflow: hidden; text-overflow:ellipsis;'>
+		                           		<td>{{ item.fname }}</td>
+		                           		<td>{{ item.computer_type }}</td>
+		                           		<td>{{ item.hostname }}</td>
+		                           		<td>{{ item.serial }}</td>
+		                           		<td>{{ item.os }}</td>
+		                           		<td>{{ item.other }}</td>
+		                           		<td><a href="/edit?id={{ item.key.id }}"><button type="button" class="btn btn-primary">Edit</button></a></td>
+		                        	</tr>
+	                           		{% endfor %}
+	                           	{% else %}
+	                           		<p>No Items for this view</p>
+	                           	{% endif %}
+	            </table>
+	            <a href="/add">Enter a New Item</a><br>
+	        </div>
+	        <div class="section" id ="prints">
+    			<ul class="nav nav-pills">
+    				<li><a href="#comps">Computers</a></li>
+    				<li><a href="#prints">Printers</a></li>
+    				<li><a href="#phone">Phones</a></li>
+    				<li><a href="#net">Network</a></li>
+    				<li><a href="#moni">Monitors</a></li>
+    			</ul>
+    			</nav>
+	            <table class="table table-bordered table-hover">
+                               	<tr style='white-space: nowrap; overflow: hidden; text-overflow:ellipsis;'>
+	                               	<td>Make:</td>
+	                               	<td>Serial #:</td>
+	                               	<td>IP: </td>
+	                           		<td>Added By:</td>
+	                           	</tr>
+	                           	{% for print_item in query_prin %}
+		                        <tr style='white-space: nowrap; overflow: hidden; text-overflow:ellipsis;'>
+		                           	<td>{{ print_item.make }}</td>
+		                           	<td>{{ print_item.serial }}</td>
+		                           	<td>{{ print_item.ip }}</td>
+		                           	<td>{{ print_item.added_by }}</td>
+		                           	<td><a href="/editprinter?id={{ print_item.key.id }}"><button type="button" class="btn btn-primary">Edit</button></a></td>
+		                        </tr>
+	                           	{% endfor %}
+	            </table>
+	            <a href="/addprinter">Enter a New Item</a><br>
+	        </div>
+	        <div class="section" id ="phone">
+    				<ul class="nav nav-pills">
+    					<li><a href="#comps">Computers</a></li>
+    					<li><a href="#prints">Printers</a></li>
+    					<li><a href="#phone">Phones</a></li>
+    					<li><a href="#net">Network</a></li>
+    					<li><a href="#moni">Monitors</a></li>
+    				</ul>
+    			</nav>
+	            <table class="table table-bordered table-hover">
+                               	<tr style='white-space: nowrap; overflow: hidden; text-overflow:ellipsis;'>
+	                               	<td>Name:</td>
+	                               	<td>Phone Number:</td>
+	                               	<td>Model: </td>
+	                               	<td>MAC: </td>
+	                           		<td>Added By:</td>
+	                           	</tr>
+	                           	{% for item in query_phone %}
+		                        <tr style='white-space: nowrap; overflow: hidden; text-overflow:ellipsis;'>
+		                           	<td>{{ item.name }}</td>
+		                           	<td>{{ item.number }}</td>
+		                           	<td>{{ item.model }}</td>
+		                           	<td>{{ item.mac }}</td>
+		                           	<td>{{ item.added_by }}</td>
+		                           	<td><a href="/editphone?id={{ item.key.id }}"><button type="button" class="btn btn-primary">Edit</button></a></td>
+		                        </tr>
+	                           	{% endfor %}
+	            </table>
+	            <a href="/addphone">Enter a New Item</a><br>
+	        </div>
+	        <div class="section" id ="net">
+    				<ul class="nav nav-pills">
+    					<li><a href="#comps">Computers</a></li>
+    					<li><a href="#prints">Printers</a></li>
+    					<li><a href="#phone">Phones</a></li>
+    					<li><a href="#net">Network</a></li>
+    					<li><a href="#moni">Monitors</a></li>
+    				</ul>
+    			</nav>
+	            <table class="table table-bordered table-hover">
+                               	<tr style='white-space: nowrap; overflow: hidden; text-overflow:ellipsis;'>
+	                               	<td>Name:</td>
+	                               	<td>Model:</td>
+	                               	<td>IP: </td>
+	                               	<td>Serial: </td>
+	                           		<td>Added By:</td>
+	                           	</tr>
+	                           	{% for item in query_net %}
+		                        <tr style='white-space: nowrap; overflow: hidden; text-overflow:ellipsis;'>
+		                           	<td>{{ item.name }}</td>
+		                           	<td>{{ item.model }}</td>
+		                           	<td>{{ item.ip }}</td>
+		                           	<td>{{ item.serial }}</td>
+		                           	<td>{{ item.added_by }}</td>
+		                           	<td><a href="/editnetwork?id={{ item.key.id }}"><button type="button" class="btn btn-primary">Edit</button></a></td>
+		                        </tr>
+	                           	{% endfor %}
+	            </table>
+	            <a href="addnetwork">Enter a New Item</a><br>
+	        </div>
+	        <div class="section" id ="moni">
+    				<ul class="nav nav-pills">
+    					<li><a href="#comps">Computers</a></li>
+    					<li><a href="#prints">Printers</a></li>
+    					<li><a href="#phone">Phones</a></li>
+    					<li><a href="#net">Network</a></li>
+    					<li><a href="#moni">Monitors</a></li>
+    				</ul>
+    			</nav>
+	            <table class="table table-bordered table-hover">
+                               	<tr style='white-space: nowrap; overflow: hidden; text-overflow:ellipsis;'>
+	                               	<td>User:</td>
+	                               	<td>Model: </td></tr>
+	                               	<td>Serial #:</td>
+	                           		<td>Added By:</td>
+	                           	</tr>
+	                           	{% for item in query_mon %}
+		                        <tr style='white-space: nowrap; overflow: hidden; text-overflow:ellipsis;'>
+		                           	<td>{{ item.user }}</td>
+		                           	<td>{{ item.model }}</td>
+		                           	<td>{{ item.serial }}</td>
+		                           	<td>{{ item.added_by }}</td>
+		                           	<td><a href="/editmonitor?id={{ item.key.id }}"><button type="button" class="btn btn-primary">Edit</button></a></td>
+		                        </tr>
+	                           	{% endfor %}
+	            </table>
+	            <a href="/addmonitor">Enter a New Item</a>
+	        </div>
+	</body>
+</html>

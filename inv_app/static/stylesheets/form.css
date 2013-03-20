@@ -1,0 +1,35 @@
+body {
+    font: Verdana, Helvetica, sans-serif;
+    background-color: #DDDDDD;
+    width: 980px
+}
+
+
+
+#contain {
+    background-color: #E09B1B;
+    border: 10px #E09B1B;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    padding: 0 0 0 30;
+    margin: 0 0 0 60;
+    width: 980px;
+}
+
+#header {
+    padding: 0 0 0 30;
+    margin: 0 0 0 60;
+    border: 1px #000;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    background-color: #fff;
+    width: 980px;
+    }
+
+header.logo {
+    margin: 10px;
+}
+
+header.headertext {
+    margin: 10px;
+}
