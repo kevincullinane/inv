@@ -1,0 +1,150 @@
+ <html>
+ 	<body>
+ 		<head> 
+	 		<script src='//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
+	 		<script></script>
+	 		<script src='{{ STATIC_URL }}js/jquery.easing.1.3.js'></script>
+	 		<script>
+	 			$(function() {
+	 				$('ul.nav a').bind('click',function(event)
+	 					{var $anchor = $(this);
+	 				$('html, body').stop().animate({
+	 					scrollLeft: $($anchor.attr('href')).offset().left
+	 				}, 1500,'easeInOutExpo');
+	 				$('html, body').stop().animate({
+	 					scrollLeft: $($anchor.attr('href')).offset().left
+	 				}, 1000);
+	 				event.preventDefault();
+	 				});
+	 				});
+	 		</script>
+	        <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}stylesheets/bootstrap.css">
+    	</head>
+    	<div class = "container-fluid">
+    		<div class="heads div-trans black affix">
+    			<h2><img src="{{ STATIC_URL }}/img/logo.png">Flipkey Inventory</h2>
+    		</div>
+    		<div class="left_float div-trans black affix">
+    			<ul class="nav nav-tabs nav-stacked">
+    				<li><a href="#comps">Computers</a></li>
+    				<li><a href="#prints">Printers</a></li>
+    				<li><a href="#phone">Phones</a></li>
+    				<li><a href="#net">Network</a></li>
+    				<li><a href="#moni">Monitors</a></li>
+    			</ul>
+    		</div>
+    			<div class="section" id ="comps">
+    			<h2> Computers </h2>
+    			<table class="table table-bordered table-hover">
+                               	<tr style='white-space: nowrap; overflow: hidden; text-overflow:ellipsis;'>
+	                               	<td>User Name:</td>
+	                               	<td>Computer Type: </td>
+	                               	<td>Hostname: </td>
+	                               	<td>Serial #:</td>
+	                               	<td>OS: </td>
+	                           		<td>Notes:</td>
+	                           	</tr>
+	                           	{% for item in comps %}
+		                        <tr style='white-space: nowrap; overflow: hidden; text-overflow:ellipsis;'>
+		                           	<td>{{ item.user_name }}</td>
+		                           	<td>{{ item.computer_type }}</td>
+		                           	<td>{{ item.hostname }}</td>
+		                           	<td>{{ item.serial }}</td>
+		                           	<td>{{ item.os }}</td>
+		                           	<td>{{ item.other }}</td>
+		                           	<td><a href="/edit/{{ item.id }}"><button type="button" class="btn btn-warning">Edit</button></a></td>
+		                        </tr>
+	                           	{% endfor %}
+	            </table>
+	            <a href="/add"><button type="button" class="btn btn-warning">Enter a New Item</button></a><br>
+	        </div>
+	        <div class="section" id ="prints">
+	        <h2> Printers </h2>
+	            <table class="table table-bordered table-hover">
+                               	<tr style='white-space: nowrap; overflow: hidden; text-overflow:ellipsis;'>
+	                               	<td>Make:</td>
+	                               	<td>Serial #:</td>
+	                               	<td>IP: </td>
+	                           		<td>Added By:</td>
+	                           	</tr>
+	                           	{% for print_item in prints %}
+		                        <tr style='white-space: nowrap; overflow: hidden; text-overflow:ellipsis;'>
+		                           	<td>{{ print_item.make }}</td>
+		                           	<td>{{ print_item.serial }}</td>
+		                           	<td>{{ print_item.ip }}</td>
+		                           	<td>{{ print_item.added_by }}</td>
+		                           	<td><a href="/editprinter?id={{ print_item.key.id }}"><button type="button" class="btn btn-primary">Edit</button></a></td>
+		                        </tr>
+	                           	{% endfor %}
+	            </table>
+	            <a href="/add_printer"><button type="button" class="btn btn-warning">Enter a New Item</button></a><br>
+	        </div>
+	        <div class="section" id ="phone">
+	        <h2> Phones </h2>
+	            <table class="table table-bordered table-hover">
+                               	<tr style='white-space: nowrap; overflow: hidden; text-overflow:ellipsis;'>
+	                               	<td>Name:</td>
+	                               	<td>Phone Number:</td>
+	                               	<td>Model: </td>
+	                               	<td>MAC: </td>
+	                           		<td>Added By:</td>
+	                           	</tr>
+	                           	{% for item in phones %}
+		                        <tr style='white-space: nowrap; overflow: hidden; text-overflow:ellipsis;'>
+		                           	<td>{{ item.user_name }}</td>
+		                           	<td>{{ item.number }}</td>
+		                           	<td>{{ item.model }}</td>
+		                           	<td>{{ item.mac }}</td>
+		                           	<td>{{ item.added_by }}</td>
+		                           	<td><a href="/editphone?id={{ item.key.id }}"><button type="button" class="btn btn-primary">Edit</button></a></td>
+		                        </tr>
+	                           	{% endfor %}
+	            </table>
+	            <a href="/add_phone"><button type="button" class="btn btn-warning">Enter a New Item</button></a>
+	        </div>
+	        <div class="section" id ="net">
+	        <h2> Network </h2>
+	            <table class="table table-bordered table-hover">
+                               	<tr style='white-space: nowrap; overflow: hidden; text-overflow:ellipsis;'>
+	                               	<td>Name:</td>
+	                               	<td>Model:</td>
+	                               	<td>IP: </td>
+	                               	<td>Serial: </td>
+	                           		<td>Added By:</td>
+	                           	</tr>
+	                           	{% for item in nets %}
+		                        <tr style='white-space: nowrap; overflow: hidden; text-overflow:ellipsis;'>
+		                           	<td>{{ item.name }}</td>
+		                           	<td>{{ item.model }}</td>
+		                           	<td>{{ item.ip }}</td>
+		                           	<td>{{ item.serial }}</td>
+		                           	<td>{{ item.added_by }}</td>
+		                           	<td><a href="/editnetwork?id={{ item.key.id }}"><button type="button" class="btn btn-primary">Edit</button></a></td>
+		                        </tr>
+	                           	{% endfor %}
+	            </table>
+	            <a href="/add_network"><button type="button" class="btn btn-warning">Enter a New Item</button></a><br>
+	        </div>
+	        <div class="section" id ="moni">
+	        <h2> Monitors </h2>
+	            <table class="table table-bordered table-hover">
+                               	<tr style='white-space: nowrap; overflow: hidden; text-overflow:ellipsis;'>
+	                               	<td>User:</td>
+	                               	<td>Model: </td>
+	                               	<td>Serial #:</td>
+	                           		<td>Added By:</td>
+	                           	</tr>
+	                           	{% for item in moni %}
+		                        <tr style='white-space: nowrap; overflow: hidden; text-overflow:ellipsis;'>
+		                           	<td>{{ item.user_name }}</td>
+		                           	<td>{{ item.model }}</td>
+		                           	<td>{{ item.serial }}</td>
+		                           	<td>{{ item.added_by }}</td>
+		                           	<td><a href="/editmonitor?id={{ item.key.id }}"><button type="button" class="btn btn-primary">Edit</button></a></td>
+		                        </tr>
+	                           	{% endfor %}
+	            </table>
+	            <a href="/add_monitor"><button type="button" class="btn btn-warning">Enter a New Item</button></a>
+	        </div>
+	</body>
+</html>
