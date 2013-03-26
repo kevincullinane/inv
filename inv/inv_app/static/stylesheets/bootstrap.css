@@ -294,7 +294,7 @@ body {
 }
 
 a {
-  color: #FC8C1C;
+  color: #000;
   text-decoration: none;
   padding-top: 8px;
   padding-bottom: 8px;
@@ -304,7 +304,6 @@ a {
   -moz-border-radius: 5px;
   border-radius: 5px;
   border-color: #000;
-  background-color: #E3E1E1;
 }
 
 a:hover {
