@@ -1,0 +1,21 @@
+<html>
+	<body>
+		<head>
+			<link type="text/css" rel="stylesheet" href="/stylesheets/bootstrap.css">
+		</head>
+        <div id="header">
+		       	<div id="headertxt">
+		       		<img src="/img/logo.png">
+		       		<h2>Flipkey Invnetory</h2>
+                    <p>Please fill out this form as accurately as possible, this information is used to setup IS equipment <a href="/"><button type="button" class="btn">Return to Home</button></a></div> 
+                    <form method="POST" action="">
+                    {% csrf_token %}
+                    <table>
+                    {{ form }}
+    				</table>
+                    <input type="submit">
+                    </form>
+                </div>
+        </div>
+    </body>
+</html>
